@@ -33,7 +33,7 @@ public class ItemService implements IItemService {
         sortLocalDateTime(input);
         float A = newLimits.getTemperatureA();
         float B = newLimits.getTemperatureB();
-        List<Integer> values = convertToBinar(input, A, B);
+        List<Integer> values = convertToBinaryList(input, A, B);
         List<Tuple> seqs = ItemService.longestEqualSeq(values);
 
         int theCount = seqs.get(seqs.size() - 1).getLength();
@@ -69,7 +69,7 @@ public class ItemService implements IItemService {
      * @param temperatureB
      * @return list of Integer with values 0 and 1
      */
-    private static List<Integer> convertToBinar(List<Item> item, float temperatureA, float temperatureB) {
+    private static List<Integer> convertToBinaryList(List<Item> item, float temperatureA, float temperatureB) {
         List<Integer> values = new ArrayList<>();
         for (int i = 0; i < item.size(); i++) {
             if (((item.get(i).getTemperature() >= temperatureA) &&
