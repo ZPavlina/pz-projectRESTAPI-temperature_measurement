@@ -80,8 +80,6 @@ public class ItemController {
      * @param id
      * @return http status with no content
      */
-
-    //delete item by id REST API
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> deleteItem(@PathVariable long id) {
         Item item = itemRepository.findById(id)
@@ -90,13 +88,31 @@ public class ItemController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
-    //GET longest period in days between temperature A and B
+    /**
+     * GET longest period in days between temperature A and B
+     * @param temperatureForm
+     * @return List of two items - initial and last items of the longest sequence
+     * bounded by temperature A and B
+     */
     @PostMapping("/period/{temperature}")
     public List<Item> longestPeriodTe (@RequestBody TemperatureForm temperatureForm) {
         return itemService.getPeriodByTemperature(temperatureForm);
-
     }
+
+    /**
+     * GET longest period in days between temperature A and B, and time X and Y
+     * @param temperatureForm
+     * @return List of two items - initial and last items of the longest sequence
+     * bounded by temperature A and B and time X and Y
+     */
+    @PostMapping("/period/temperature/{time}")
+    public List<Item> longestPeriodTeTi (@RequestBody TemperatureForm temperatureForm) {
+        return itemService.getPeriodByTemperatureAndTime(temperatureForm);
+    }
+
+
+
+
 
 
 

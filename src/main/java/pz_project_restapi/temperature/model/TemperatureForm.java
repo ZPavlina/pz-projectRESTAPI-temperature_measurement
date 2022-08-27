@@ -1,6 +1,7 @@
 package pz_project_restapi.temperature.model;
 
 import java.time.*;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 @AllArgsConstructor
@@ -21,11 +22,13 @@ public class TemperatureForm {
     /**
      *  Limit of time X for the searched period
      */
-    private LocalDateTime timeX;
+    @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING)
+    private LocalTime TimeX;
 
     /**
      *  Limit of time Y for the searched period
      */
-    private LocalDateTime timeY;
+    @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING)
+    private LocalTime TimeY;
 
 }
